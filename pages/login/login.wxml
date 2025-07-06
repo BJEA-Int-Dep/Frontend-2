@@ -1,0 +1,31 @@
+<!--login.wxml-->
+<view class="custom-header">
+  <view class="header-left"></view>
+  <view class="header-center">
+    <text class="header-title">校友资料查询系统</text>
+  </view>
+  <view class="header-right"></view>
+</view>
+<view class="container">
+  <view class="identity-tabs">
+    <view class="tab {{identity === 'student' ? 'active' : ''}}" data-type="student" bindtap="chooseIdentity">我是学生</view>
+    <view class="tab {{identity === 'alumni' ? 'active' : ''}}" data-type="alumni" bindtap="chooseIdentity">我是校友</view>
+  </view>
+  <view class="login-form">
+    <view class="input-group">
+      <text class="label">学号</text>
+      <input class="input" type="text" placeholder="请输入学号" bindinput="onStudentIdInput" value="{{studentId}}"/>
+    </view>
+    
+    <view class="input-group">
+      <text class="label">密码</text>
+      <input class="input" type="password" placeholder="请输入密码" bindinput="onPasswordInput" value="{{password}}"/>
+    </view>
+
+    <button class="login-btn" bindtap="handleLogin">登录</button>
+  </view>
+</view>
+<view class="register-link">
+  <text>还没有账号？</text>
+  <text class="link" bindtap="goToRegister">立即注册</text>
+</view> 

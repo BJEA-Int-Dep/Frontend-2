@@ -1,0 +1,19 @@
+<!--pages/profile/profile.wxml-->
+<!-- 个人主页 -->
+<view class="custom-header">
+  <view class="header-left"></view>
+  <view class="header-center">
+    <text class="header-title">个人中心</text>
+  </view>
+  <view class="header-right"></view>
+</view>
+<view class="profile-page">
+  <view class="profile-card">
+    <image class="avatar" src="{{user.avatar}}" mode="aspectFill"></image>
+    <text class="name">{{user.name}}</text>
+    <text class="info">学号：{{user.studentId}}</text>
+    <text class="info">专业：{{user.major}}</text>
+    <text class="info">联系方式：{{user.contact}}</text>
+  </view>
+  <button class="logout-btn" bindtap="logout">退出登录</button>
+</view>

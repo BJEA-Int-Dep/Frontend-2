@@ -1,0 +1,21 @@
+<!--pages/alumniDetail/alumniDetail.wxml-->
+<!-- 校友详情页 -->
+<view class="custom-header">
+  <view class="header-left">
+    <image class="back-icon" src="/assets/icons/Angle Left Icon.png" mode="aspectFit" bindtap="goBack"></image>
+  </view>
+  <view class="header-center">
+    <text class="header-title">校友详情</text>
+  </view>
+  <view class="header-right"></view>
+</view>
+<view class="alumni-detail">
+  <image class="avatar" src="{{alumni.avatar}}" mode="aspectFill"></image>
+  <text class="name">{{alumni.name}}</text>
+  <text class="info">{{alumni.year}} · {{alumni.major}}</text>
+  <text class="job">{{alumni.job}}</text>
+  <view class="desc-block">
+    <text class="desc-title">个人简介</text>
+    <text class="desc">{{alumni.desc}}</text>
+  </view>
+</view>

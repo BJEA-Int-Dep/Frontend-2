@@ -1,0 +1,26 @@
+<!--pages/alumniList/alumniList.wxml-->
+<!-- 自定义页眉 -->
+<view class="custom-header">
+  <view class="header-left"></view>
+  <view class="header-center">
+    <text class="header-title">校友列表</text>
+  </view>
+  <view class="header-right"></view>
+</view>
+
+<!-- 校友列表页面 -->
+<view class="alumni-list">
+  <!-- 遍历校友数据，渲染每个校友卡片 -->
+  <block wx:for="{{alumni}}" wx:key="id">
+    <view class="alumni-item" bindtap="goToDetail" data-item="{{item}}">
+      <!-- 校友头像 -->
+      <image class="avatar" src="{{item.avatar}}" mode="aspectFill"></image>
+      <view class="info">
+        <!-- 校友姓名 -->
+        <text class="name">{{item.name}}</text>
+        <!-- 校友简介 -->
+        <text class="desc">{{item.desc}}</text>
+      </view>
+    </view>
+  </block>
+</view>

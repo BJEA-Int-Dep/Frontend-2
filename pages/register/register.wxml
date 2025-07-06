@@ -1,0 +1,36 @@
+<view class="custom-header">
+  <view class="header-left"></view>
+  <view class="header-center">
+    <text class="header-title">注册</text>
+  </view>
+  <view class="header-right"></view>
+</view>
+<view class="container">
+  <view class="identity-tabs">
+    <view class="tab {{identity === 'student' ? 'active' : ''}}" data-type="student" bindtap="chooseIdentity">我是学生</view>
+    <view class="tab {{identity === 'alumni' ? 'active' : ''}}" data-type="alumni" bindtap="chooseIdentity">我是校友</view>
+  </view>
+  <view class="register-form">
+    <view wx:if="{{identity === 'student'}}">
+      <view class="form-title">学生注册</view>
+      <view class="input-group"><text class="label">学号</text><input class="input" type="text" placeholder="请输入学号" /></view>
+      <view class="input-group"><text class="label">姓名</text><input class="input" type="text" placeholder="请输入姓名" /></view>
+      <view class="input-group"><text class="label">专业</text><input class="input" type="text" placeholder="请输入专业" /></view>
+      <view class="input-group"><text class="label">入学年份</text><input class="input" type="text" placeholder="请输入入学年份" /></view>
+      <view class="input-group"><text class="label">联系方式</text><input class="input" type="text" placeholder="请输入联系方式" /></view>
+    </view>
+    <view wx:if="{{identity === 'alumni'}}">
+      <view class="form-title">校友注册</view>
+      <view class="input-group"><text class="label">姓名</text><input class="input" type="text" placeholder="请输入姓名" /></view>
+      <view class="input-group"><text class="label">毕业年份</text><input class="input" type="text" placeholder="请输入毕业年份" /></view>
+      <view class="input-group"><text class="label">专业</text><input class="input" type="text" placeholder="请输入专业" /></view>
+      <view class="input-group"><text class="label">工作单位</text><input class="input" type="text" placeholder="请输入工作单位" /></view>
+      <view class="input-group"><text class="label">联系方式</text><input class="input" type="text" placeholder="请输入联系方式" /></view>
+    </view>
+    <button class="register-btn" bindtap="handleRegister">注册</button>
+  </view>
+</view>
+<view class="register-bottom">
+  <text>已有账号？</text>
+  <text class="link" bindtap="goToLogin">返回登录</text>
+</view> 
