@@ -39,7 +39,6 @@
   min-height: calc(100vh - 180rpx);
   display: flex;
   flex-direction: column;
-  align-items: center;
   justify-content: flex-start;
   padding: 0 0 40rpx 0;
   background-color: #F6F6F6;
@@ -71,6 +70,10 @@
   font-weight: bold;
 }
 
+.register-form-wrap {
+  width: 92%;
+  margin: 0 auto;
+}
 .register-form {
   width: 80%;
   display: flex;
@@ -136,14 +139,26 @@
 .register-bottom {
   position: fixed;
   left: 0;
-  bottom: calc(env(safe-area-inset-bottom) + 40rpx);
+  bottom: 0;
   width: 100vw;
-  text-align: center;
-  font-size: 28rpx;
-  color: #666;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   background: transparent;
   z-index: 100;
-  padding: 20rpx 0;
+  padding: calc(env(safe-area-inset-bottom) + 40rpx) 0;
+}
+
+.register-text {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20rpx;
+}
+
+.register-prompt {
+  font-size: 28rpx;
+  color: #666;
 }
 .link {
   color: #1AAD19;

@@ -123,19 +123,31 @@
 .register-link {
   position: fixed;
   left: 0;
-  bottom: calc(env(safe-area-inset-bottom) + 40rpx);
+  bottom: 0;
   width: 100vw;
-  text-align: center;
-  font-size: 28rpx;
-  color: #666;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   background: transparent;
   z-index: 100;
-  padding: 20rpx 0;
+  padding: calc(env(safe-area-inset-bottom) + 40rpx) 0;
+}
+
+.register-text {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20rpx;
+}
+
+.register-prompt {
+  font-size: 28rpx;
+  color: #666;
 }
 
 .link {
   color: #1AAD19;
-  margin-left: 10rpx;
+  font-size: 28rpx;
   font-weight: bold;
 }
 

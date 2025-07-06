@@ -31,6 +31,8 @@
   </view>
 </view>
 <view class="register-bottom">
-  <text>已有账号？</text>
-  <text class="link" bindtap="goToLogin">返回登录</text>
+  <view class="register-text">
+    <text class="register-prompt">已有账号？</text>
+    <text class="link" bindtap="goToLogin">返回登录</text>
+  </view>
 </view> 
