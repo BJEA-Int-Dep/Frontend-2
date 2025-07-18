@@ -5,7 +5,7 @@ page {
 }
 .scrollarea {
   flex: 1;
-  overflow-y: hidden;
+  /* overflow-y: hidden; */
 }
 .log-item {
   margin-top: 20rpx;

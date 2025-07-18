@@ -13,8 +13,9 @@
   background: #fff;
   box-sizing: border-box;
   box-shadow: 0 2rpx 8rpx rgba(0,0,0,0.03);
-  position: sticky;
+  position: fixed;
   top: 0;
+  left: 0;
   z-index: 10;
 }
 .header-left, .header-right {
@@ -85,6 +86,6 @@
   box-shadow: 0 8rpx 24rpx rgba(255,77,79,0.10);
   border: none;
 }
-.logout-btn:active {
+.logout-btn.button-active {
   background: linear-gradient(90deg, #d9363e 60%, #ff4d4f 100%);
 }

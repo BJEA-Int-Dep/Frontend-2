@@ -1,4 +1,6 @@
 // pages/profile/profile.js
+const { api, handleError } = require('../../utils/api.js');
+
 Page({
 
   /**
@@ -6,19 +8,22 @@ Page({
    */
   data: {
     user: {
-      avatar: '/assets/avatars/user1.png', // 本地头像图片
-      name: '张三',
-      studentId: '2020123456',
-      major: '计算机科学',
-      contact: 'zhangsan@example.com'
-    }
+      avatar: '',
+      name: '',
+      studentId: '',
+      major: '',
+      contact: '',
+      email: '',
+      phone: ''
+    },
+    logoutBtnActive: false // 退出按钮按下状态
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad(options) {
-
+    this.loadUserProfile();
   },
 
   /**
@@ -70,17 +75,78 @@ Page({
 
   },
 
-  // 退出登录按钮事件
-  logout() {
-    wx.showToast({
-      title: '已退出登录',
-      icon: 'none',
-      duration: 1000
+  // 退出按钮按下效果
+  onLogoutBtnTouchStart() {
+    this.setData({
+      logoutBtnActive: true
     });
-    setTimeout(() => {
-      wx.reLaunch({
-        url: '/pages/login/login'
+  },
+
+  // 退出按钮松开效果
+  onLogoutBtnTouchEnd() {
+    this.setData({
+      logoutBtnActive: false
+    });
+  },
+
+  /**
+   * 加载用户信息
+   */
+  async loadUserProfile() {
+    try {
+      const result = await api.user.getProfile();
+      
+      if (result.success) {
+        this.setData({
+          user: result.data
+        });
+      } else {
+        wx.showToast({
+          title: result.message || '获取用户信息失败',
+          icon: 'none'
+        });
+      }
+    } catch (error) {
+      handleError(error);
+    }
+  },
+
+  // 退出登录按钮事件
+  async logout() {
+    try {
+      const result = await api.user.logout();
+      
+      // 清除本地存储的用户信息
+      wx.removeStorageSync('userInfo');
+      wx.removeStorageSync('token');
+      
+      wx.showToast({
+        title: '已退出登录',
+        icon: 'success',
+        duration: 1000
       });
-    }, 1000);
+      
+      setTimeout(() => {
+        wx.reLaunch({
+          url: '/pages/login/login'
+        });
+      }, 1000);
+    } catch (error) {
+      // 即使退出失败，也清除本地信息并跳转
+      wx.removeStorageSync('userInfo');
+      wx.removeStorageSync('token');
+      
+      wx.showToast({
+        title: '已退出登录',
+        icon: 'none',
+        duration: 1000
+      });
+      
+      setTimeout(() => {
+        wx.reLaunch({
+          url: '/pages/login/login'
+        });
+      }, 1000);
+    }
   }
 })

@@ -1,0 +1,110 @@
+{
+  "users": [
+    {
+      "id": 1,
+      "name": "张三",
+      "studentId": "2020123456",
+      "major": "计算机科学",
+      "contact": "zhangsan@example.com",
+      "email": "zhangsan@example.com",
+      "phone": "13800138000",
+      "avatar": "https://randomuser.me/api/portraits/men/1.jpg",
+      "identity": "student",
+      "enrollmentYear": "2020"
+    },
+    {
+      "id": 2,
+      "name": "李四",
+      "studentId": "2020123457",
+      "major": "金融学",
+      "contact": "lisi@example.com",
+      "email": "lisi@example.com",
+      "phone": "13800138001",
+      "avatar": "https://randomuser.me/api/portraits/women/2.jpg",
+      "identity": "student",
+      "enrollmentYear": "2020"
+    }
+  ],
+  "alumni": [
+    {
+      "id": 1,
+      "name": "张三",
+      "avatar": "https://randomuser.me/api/portraits/men/1.jpg",
+      "year": "2008级",
+      "major": "计算机科学",
+      "job": "现任某科技公司工程师",
+      "desc": "2008级计算机科学，现任某科技公司工程师。",
+      "contact": "zhangsan@example.com",
+      "company": "某科技公司",
+      "location": "北京",
+      "email": "zhangsan@example.com",
+      "phone": "13800138000",
+      "graduationYear": "2012"
+    },
+    {
+      "id": 2,
+      "name": "李四",
+      "avatar": "https://randomuser.me/api/portraits/women/2.jpg",
+      "year": "2010级",
+      "major": "金融学",
+      "job": "现任银行客户经理",
+      "desc": "2010级金融学，现任银行客户经理。",
+      "contact": "lisi@example.com",
+      "company": "某银行",
+      "location": "上海",
+      "email": "lisi@example.com",
+      "phone": "13800138001",
+      "graduationYear": "2014"
+    },
+    {
+      "id": 3,
+      "name": "王五",
+      "avatar": "https://randomuser.me/api/portraits/men/3.jpg",
+      "year": "2012级",
+      "major": "法学",
+      "job": "现为律师",
+      "desc": "2012级法学，现为律师。",
+      "contact": "wangwu@example.com",
+      "company": "某律师事务所",
+      "location": "深圳",
+      "email": "wangwu@example.com",
+      "phone": "13800138002",
+      "graduationYear": "2016"
+    },
+    {
+      "id": 4,
+      "name": "赵六",
+      "avatar": "https://randomuser.me/api/portraits/women/4.jpg",
+      "year": "2015级",
+      "major": "医学",
+      "job": "现为医生",
+      "desc": "2015级医学，现为医生。",
+      "contact": "zhaoliu@example.com",
+      "company": "某医院",
+      "location": "广州",
+      "email": "zhaoliu@example.com",
+      "phone": "13800138003",
+      "graduationYear": "2020"
+    },
+    {
+      "id": 5,
+      "name": "孙七",
+      "avatar": "https://randomuser.me/api/portraits/men/5.jpg",
+      "year": "2018级",
+      "major": "建筑学",
+      "job": "现为建筑师",
+      "desc": "2018级建筑学，现为建筑师。",
+      "contact": "sunqi@example.com",
+      "company": "某建筑设计院",
+      "location": "杭州",
+      "email": "sunqi@example.com",
+      "phone": "13800138004",
+      "graduationYear": "2022"
+    }
+  ],
+  "stats": {
+    "totalAlumni": 5,
+    "totalStudents": 2,
+    "recentGraduates": 2
+  }
+} 

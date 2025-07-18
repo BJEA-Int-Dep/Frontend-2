@@ -84,7 +84,7 @@ Component({
       if (animated) {
         displayStyle = `opacity: ${
           show ? '1' : '0'
-        };transition:opacity 0.5s;`
+        };`
       } else {
         displayStyle = `display: ${show ? '' : 'none'}`
       }

@@ -14,7 +14,27 @@
   <text class="name">{{alumni.name}}</text>
   <text class="info">{{alumni.year}} · {{alumni.major}}</text>
   <text class="job">{{alumni.job}}</text>
-  <view class="desc-block">
+  
+  <!-- 联系信息 -->
+  <view class="desc-block" wx:if="{{alumni.contact}}">
+    <text class="desc-title">联系方式</text>
+    <text class="desc">{{alumni.contact}}</text>
+  </view>
+  
+  <!-- 工作信息 -->
+  <view class="desc-block" wx:if="{{alumni.company}}">
+    <text class="desc-title">工作单位</text>
+    <text class="desc">{{alumni.company}}</text>
+  </view>
+  
+  <!-- 位置信息 -->
+  <view class="desc-block" wx:if="{{alumni.location}}">
+    <text class="desc-title">所在地区</text>
+    <text class="desc">{{alumni.location}}</text>
+  </view>
+  
+  <!-- 个人简介 -->
+  <view class="desc-block" wx:if="{{alumni.desc}}">
     <text class="desc-title">个人简介</text>
     <text class="desc">{{alumni.desc}}</text>
   </view>

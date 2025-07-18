@@ -13,21 +13,84 @@
   <view class="register-form">
     <view wx:if="{{identity === 'student'}}">
       <view class="form-title">学生注册</view>
-      <view class="input-group"><text class="label">学号</text><input class="input" type="text" placeholder="请输入学号" /></view>
-      <view class="input-group"><text class="label">姓名</text><input class="input" type="text" placeholder="请输入姓名" /></view>
-      <view class="input-group"><text class="label">专业</text><input class="input" type="text" placeholder="请输入专业" /></view>
-      <view class="input-group"><text class="label">入学年份</text><input class="input" type="text" placeholder="请输入入学年份" /></view>
-      <view class="input-group"><text class="label">联系方式</text><input class="input" type="text" placeholder="请输入联系方式" /></view>
+      <view class="input-group">
+        <text class="label">学号</text>
+        <input class="input" type="text" placeholder="请输入学号" 
+               value="{{studentForm.studentId}}" 
+               data-field="studentId" 
+               bindinput="onStudentInput" />
+      </view>
+      <view class="input-group">
+        <text class="label">姓名</text>
+        <input class="input" type="text" placeholder="请输入姓名" 
+               value="{{studentForm.name}}" 
+               data-field="name" 
+               bindinput="onStudentInput" />
+      </view>
+      <view class="input-group">
+        <text class="label">专业</text>
+        <input class="input" type="text" placeholder="请输入专业" 
+               value="{{studentForm.major}}" 
+               data-field="major" 
+               bindinput="onStudentInput" />
+      </view>
+      <view class="input-group">
+        <text class="label">入学年份</text>
+        <input class="input" type="text" placeholder="请输入入学年份" 
+               value="{{studentForm.enrollmentYear}}" 
+               data-field="enrollmentYear" 
+               bindinput="onStudentInput" />
+      </view>
+      <view class="input-group">
+        <text class="label">联系方式</text>
+        <input class="input" type="text" placeholder="请输入联系方式" 
+               value="{{studentForm.contact}}" 
+               data-field="contact" 
+               bindinput="onStudentInput" />
+      </view>
     </view>
     <view wx:if="{{identity === 'alumni'}}">
       <view class="form-title">校友注册</view>
-      <view class="input-group"><text class="label">姓名</text><input class="input" type="text" placeholder="请输入姓名" /></view>
-      <view class="input-group"><text class="label">毕业年份</text><input class="input" type="text" placeholder="请输入毕业年份" /></view>
-      <view class="input-group"><text class="label">专业</text><input class="input" type="text" placeholder="请输入专业" /></view>
-      <view class="input-group"><text class="label">工作单位</text><input class="input" type="text" placeholder="请输入工作单位" /></view>
-      <view class="input-group"><text class="label">联系方式</text><input class="input" type="text" placeholder="请输入联系方式" /></view>
+      <view class="input-group">
+        <text class="label">姓名</text>
+        <input class="input" type="text" placeholder="请输入姓名" 
+               value="{{alumniForm.name}}" 
+               data-field="name" 
+               bindinput="onAlumniInput" />
+      </view>
+      <view class="input-group">
+        <text class="label">毕业年份</text>
+        <input class="input" type="text" placeholder="请输入毕业年份" 
+               value="{{alumniForm.graduationYear}}" 
+               data-field="graduationYear" 
+               bindinput="onAlumniInput" />
+      </view>
+      <view class="input-group">
+        <text class="label">专业</text>
+        <input class="input" type="text" placeholder="请输入专业" 
+               value="{{alumniForm.major}}" 
+               data-field="major" 
+               bindinput="onAlumniInput" />
+      </view>
+      <view class="input-group">
+        <text class="label">工作单位</text>
+        <input class="input" type="text" placeholder="请输入工作单位" 
+               value="{{alumniForm.company}}" 
+               data-field="company" 
+               bindinput="onAlumniInput" />
+      </view>
+      <view class="input-group">
+        <text class="label">联系方式</text>
+        <input class="input" type="text" placeholder="请输入联系方式" 
+               value="{{alumniForm.contact}}" 
+               data-field="contact" 
+               bindinput="onAlumniInput" />
+      </view>
     </view>
-    <button class="register-btn" bindtap="handleRegister">注册</button>
+    <button class="register-btn {{registerBtnActive ? 'button-active' : ''}}" 
+            bindtap="handleRegister" 
+            bindtouchstart="onRegisterBtnTouchStart" 
+            bindtouchend="onRegisterBtnTouchEnd">注册</button>
   </view>
 </view>
 <view class="register-bottom">

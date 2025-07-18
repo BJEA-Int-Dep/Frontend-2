@@ -1,4 +1,6 @@
 // pages/login/login.js
+const { api, handleError } = require('../../utils/api.js');
+
 Page({
 
   /**
@@ -7,7 +9,8 @@ Page({
   data: {
     identity: 'student', // 默认学生
     studentId: '', // 用户输入的学号
-    password: ''   // 用户输入的密码
+    password: '',   // 用户输入的密码
+    loginBtnActive: false // 登录按钮按下状态
   },
 
   /**
@@ -76,21 +79,73 @@ Page({
     this.setData({ password: e.detail.value });
   },
 
+  // 登录按钮按下效果
+  onLoginBtnTouchStart() {
+    this.setData({
+      loginBtnActive: true
+    });
+  },
+
+  // 登录按钮松开效果
+  onLoginBtnTouchEnd() {
+    this.setData({
+      loginBtnActive: false
+    });
+  },
+
   // 登录按钮点击事件处理
-  // 校验学号和密码是否都为111，成功则跳转到校友列表页，否则弹出错误提示
-  handleLogin() {
-    const { studentId, password } = this.data;
-    if (studentId === '111' && password === '111') { // 现在是暂时写死，后续需要修改
-      // 跳转到tabBar页面（校友列表）
-      wx.switchTab({
-        url: '/pages/alumniList/alumniList'
-      });
-    } else {
-      // 登录失败，弹出提示
+  async handleLogin() {
+    const { studentId, password, identity } = this.data;
+    
+    if (!studentId || !password) {
       wx.showToast({
-        title: '账号或密码错误',
+        title: '请输入学号和密码',
         icon: 'none'
       });
+      return;
+    }
+    
+    try {
+      wx.showLoading({
+        title: '登录中...',
+        mask: true
+      });
+      
+      const loginData = {
+        studentId,
+        password,
+        identity // 学生或校友身份
+      };
+      
+      const result = await api.user.login(loginData);
+      
+      wx.hideLoading();
+      
+      if (result.success) {
+        // 保存用户信息到本地存储
+        wx.setStorageSync('userInfo', result.data);
+        wx.setStorageSync('token', result.token);
+        
+        wx.showToast({
+          title: '登录成功',
+          icon: 'success'
+        });
+        
+        // 跳转到tabBar页面（校友列表）
+        setTimeout(() => {
+          wx.switchTab({
+            url: '/pages/alumniList/alumniList'
+          });
+        }, 1000);
+      } else {
+        wx.showToast({
+          title: result.message || '登录失败',
+          icon: 'none'
+        });
+      }
+    } catch (error) {
+      wx.hideLoading();
+      handleError(error);
     }
   },
 

@@ -23,8 +23,9 @@
   background: #fff;
   box-sizing: border-box;
   box-shadow: 0 2rpx 8rpx rgba(0,0,0,0.03);
-  position: sticky;
+  position: fixed;
   top: 0;
+  left: 0;
   z-index: 10;
 }
 
@@ -112,11 +113,10 @@
   font-weight: bold;
   border-radius: 50rpx;
   box-shadow: 0 8rpx 24rpx rgba(34,197,94,0.15);
-  transition: background 0.2s;
   border: none;
 }
 
-.login-btn:active {
+.login-btn.button-active {
   background: linear-gradient(90deg, #179B16 60%, #1AAD19 100%);
 }
 
@@ -137,7 +137,6 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 20rpx;
 }
 
 .register-prompt {
@@ -159,7 +158,6 @@
   margin: 0 auto 40rpx auto;
   background: #f2f2f2;
   border-radius: 44rpx;
-  overflow: hidden;
 }
 
 .tab {
@@ -169,7 +167,6 @@
   font-size: 32rpx;
   color: #888;
   background: #f2f2f2;
-  transition: background 0.2s, color 0.2s;
 }
 
 .tab.active {

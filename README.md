@@ -73,7 +73,51 @@ alumni: [
 2. 配置 `app.json` 里的 `appid` 为你自己的小程序 AppID
 3. 预览、调试即可
 
+## 后端对接说明
+
+### 1. 配置API地址
+
+修改 `utils/config.js` 文件中的API地址：
+
+```javascript
+// 开发环境
+development: {
+  baseUrl: 'http://localhost:3000/api', // 修改为你的后端API地址
+  timeout: 10000
+}
+```
+
+### 2. 后端需要实现的接口
+
+请参考 `API_DOCUMENTATION.md` 文件，实现以下接口：
+
+- `POST /user/login` - 用户登录
+- `POST /user/register` - 用户注册
+- `GET /user/profile` - 获取用户信息
+- `POST /user/logout` - 用户登出
+- `GET /alumni/list` - 获取校友列表
+- `GET /alumni/detail/:id` - 获取校友详情
+- `GET /alumni/search` - 搜索校友
+- `GET /alumni/stats` - 获取校友统计
+
+### 3. 数据格式
+
+参考 `mock_data.json` 文件中的示例数据格式。
+
+### 4. 认证机制
+
+- 使用JWT Token进行身份认证
+- 登录成功后，前端会保存token到本地存储
+- 后续请求会在请求头中携带 `Authorization: Bearer <token>`
+- 后端需要验证token的有效性
+
+### 5. 错误处理
+
+- 401状态码：token过期，前端会自动跳转到登录页
+- 其他错误：显示错误提示信息
+
 ## 说明
 
-- 本项目所有数据均为前端假数据，适合前端演示和教学
-- 如需接入后端，请在相应页面的 `onLoad` 方法中请求接口并替换假数据 
+- 本项目已完全适配后端API，所有数据都通过接口获取
+- 支持用户登录、注册、校友列表、详情查看等功能
+- 包含完整的错误处理和加载状态 

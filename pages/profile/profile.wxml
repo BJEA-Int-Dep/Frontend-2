@@ -13,7 +13,12 @@
     <text class="name">{{user.name}}</text>
     <text class="info">学号：{{user.studentId}}</text>
     <text class="info">专业：{{user.major}}</text>
-    <text class="info">联系方式：{{user.contact}}</text>
+    <text class="info" wx:if="{{user.contact}}">联系方式：{{user.contact}}</text>
+    <text class="info" wx:if="{{user.email}}">邮箱：{{user.email}}</text>
+    <text class="info" wx:if="{{user.phone}}">电话：{{user.phone}}</text>
   </view>
-  <button class="logout-btn" bindtap="logout">退出登录</button>
+  <button class="logout-btn {{logoutBtnActive ? 'button-active' : ''}}" 
+          bindtap="logout" 
+          bindtouchstart="onLogoutBtnTouchStart" 
+          bindtouchend="onLogoutBtnTouchEnd">退出登录</button>
 </view>

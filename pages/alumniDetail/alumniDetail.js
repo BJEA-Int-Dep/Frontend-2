@@ -1,4 +1,6 @@
 // pages/alumniDetail/alumniDetail.js
+const { api, handleError } = require('../../utils/api.js');
+
 Page({
 
   /**
@@ -6,31 +8,26 @@ Page({
    */
   data: {
     alumni: {
+      id: '',
       avatar: '',
       name: '',
       year: '',
       major: '',
       job: '',
-      desc: ''
-    }
+      desc: '',
+      contact: '',
+      company: '',
+      location: ''
+    },
+    loading: false
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad(options) {
-    // 对所有参数进行解码，防止中文乱码
-    if (options && options.name) {
-      this.setData({
-        alumni: {
-          avatar: decodeURIComponent(options.avatar),
-          name: decodeURIComponent(options.name),
-          year: decodeURIComponent(options.year),
-          major: decodeURIComponent(options.major),
-          job: decodeURIComponent(options.job),
-          desc: decodeURIComponent(options.desc)
-        }
-      });
+    if (options && options.id) {
+      this.loadAlumniDetail(options.id);
     }
   },
 
@@ -81,6 +78,33 @@ Page({
    */
   onShareAppMessage() {
 
+  },
+
+  /**
+   * 加载校友详情
+   */
+  async loadAlumniDetail(id) {
+    try {
+      this.setData({ loading: true });
+      
+      const result = await api.alumni.getDetail(id);
+      
+      if (result.success) {
+        this.setData({
+          alumni: result.data,
+          loading: false
+        });
+      } else {
+        this.setData({ loading: false });
+        wx.showToast({
+          title: result.message || '获取校友详情失败',
+          icon: 'none'
+        });
+      }
+    } catch (error) {
+      this.setData({ loading: false });
+      handleError(error);
+    }
   },
 
   // 返回上一页

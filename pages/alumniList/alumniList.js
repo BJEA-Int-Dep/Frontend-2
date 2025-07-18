@@ -1,46 +1,24 @@
 // pages/alumniList/alumniList.js
+const { api, handleError } = require('../../utils/api.js');
+
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    alumni: [
-      {
-        id: 1,
-        name: '张三',
-        avatar: 'https://randomuser.me/api/portraits/men/1.jpg',
-        year: '2008级',
-        major: '计算机科学',
-        job: '现任某科技公司工程师',
-        desc: '2008级计算机科学，现任某科技公司工程师。'
-      },
-      {
-        id: 2,
-        name: '李四',
-        avatar: 'https://randomuser.me/api/portraits/women/2.jpg',
-        year: '2010级',
-        major: '金融学',
-        job: '现任银行客户经理',
-        desc: '2010级金融学，现任银行客户经理。'
-      },
-      {
-        id: 3,
-        name: '王五',
-        avatar: 'https://randomuser.me/api/portraits/men/3.jpg',
-        year: '2012级',
-        major: '法学',
-        job: '现为律师',
-        desc: '2012级法学，现为律师。'
-      }
-    ]
+    alumni: [],
+    loading: false,
+    hasMore: true,
+    page: 1,
+    pageSize: 10
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad(options) {
-    // 这里可以请求后端接口获取校友数据，当前为假数据
+    this.loadAlumniList();
   },
 
   /**
@@ -75,14 +53,16 @@ Page({
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh() {
-    // 用户下拉刷新时触发
+    this.refreshAlumniList();
   },
 
   /**
    * 页面上拉触底事件的处理函数
    */
   onReachBottom() {
-    // 页面滚动到底部时触发
+    if (this.data.hasMore && !this.data.loading) {
+      this.loadMoreAlumni();
+    }
   },
 
   /**
@@ -93,12 +73,97 @@ Page({
   },
 
   /**
+   * 加载校友列表
+   */
+  async loadAlumniList() {
+    if (this.data.loading) return;
+    
+    try {
+      this.setData({ loading: true });
+      
+      const params = {
+        page: this.data.page,
+        pageSize: this.data.pageSize
+      };
+      
+      const result = await api.alumni.getList(params);
+      
+      if (result.success) {
+        this.setData({
+          alumni: result.data.list || [],
+          hasMore: result.data.hasMore || false,
+          loading: false
+        });
+      } else {
+        this.setData({ loading: false });
+        wx.showToast({
+          title: result.message || '获取校友列表失败',
+          icon: 'none'
+        });
+      }
+    } catch (error) {
+      this.setData({ loading: false });
+      handleError(error);
+    }
+  },
+
+  /**
+   * 刷新校友列表
+   */
+  async refreshAlumniList() {
+    this.setData({
+      page: 1,
+      hasMore: true
+    });
+    await this.loadAlumniList();
+    wx.stopPullDownRefresh();
+  },
+
+  /**
+   * 加载更多校友
+   */
+  async loadMoreAlumni() {
+    if (this.data.loading || !this.data.hasMore) return;
+    
+    try {
+      this.setData({ loading: true });
+      
+      const nextPage = this.data.page + 1;
+      const params = {
+        page: nextPage,
+        pageSize: this.data.pageSize
+      };
+      
+      const result = await api.alumni.getList(params);
+      
+      if (result.success) {
+        const newAlumni = result.data.list || [];
+        this.setData({
+          alumni: [...this.data.alumni, ...newAlumni],
+          page: nextPage,
+          hasMore: result.data.hasMore || false,
+          loading: false
+        });
+      } else {
+        this.setData({ loading: false });
+        wx.showToast({
+          title: result.message || '加载更多失败',
+          icon: 'none'
+        });
+      }
+    } catch (error) {
+      this.setData({ loading: false });
+      handleError(error);
+    }
+  },
+
+  /**
    * 点击校友卡片，跳转到详情页并传递信息
    */
   goToDetail(e) {
     const item = e.currentTarget.dataset.item;
     wx.navigateTo({
-      url: `/pages/alumniDetail/alumniDetail?avatar=${encodeURIComponent(item.avatar)}&name=${encodeURIComponent(item.name)}&year=${encodeURIComponent(item.year)}&major=${encodeURIComponent(item.major)}&job=${encodeURIComponent(item.job)}&desc=${encodeURIComponent(item.desc)}`
+      url: `/pages/alumniDetail/alumniDetail?id=${item.id}`
     });
   }
 })
