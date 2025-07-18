@@ -1,69 +1,50 @@
 // pages/login/login.js
-Page({
+const api = require('../../utils/api.js');
 
+Page({
   /**
    * 页面的初始数据
    */
   data: {
     identity: 'student', // 默认学生
     studentId: '', // 用户输入的学号
-    password: ''   // 用户输入的密码
+    password: '',   // 用户输入的密码
+    loading: false  // 登录状态
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad(options) {
-
+    // 检查是否已经登录
+    const token = api.getAuthToken();
+    if (token) {
+      this.autoLogin();
+    }
   },
 
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady() {
+  // 自动登录
+  autoLogin() {
+    wx.showLoading({
+      title: '自动登录中...'
+    });
 
-  },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow() {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide() {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload() {
-
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh() {
-
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom() {
-
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage() {
-
+    api.auth.getProfile()
+      .then(res => {
+        wx.hideLoading();
+        if (res.success) {
+          // 登录成功，跳转到校友列表页
+          wx.switchTab({
+            url: '/pages/alumniList/alumniList'
+          });
+        }
+      })
+      .catch(err => {
+        wx.hideLoading();
+        console.log('自动登录失败:', err);
+        // 清除无效token
+        api.clearAuthToken();
+      });
   },
 
   // 监听学号输入框内容变化
@@ -77,25 +58,76 @@ Page({
   },
 
   // 登录按钮点击事件处理
-  // 校验学号和密码是否都为111，成功则跳转到校友列表页，否则弹出错误提示
   handleLogin() {
-    const { studentId, password } = this.data;
-    if (studentId === '111' && password === '111') { // 现在是暂时写死，后续需要修改
-      // 跳转到tabBar页面（校友列表）
-      wx.switchTab({
-        url: '/pages/alumniList/alumniList'
-      });
-    } else {
-      // 登录失败，弹出提示
+    const { studentId, password, identity, loading } = this.data;
+    
+    // 防止重复点击
+    if (loading) return;
+
+    // 输入验证
+    if (!studentId.trim()) {
       wx.showToast({
-        title: '账号或密码错误',
+        title: '请输入学号/工号',
         icon: 'none'
       });
+      return;
     }
+
+    if (!password.trim()) {
+      wx.showToast({
+        title: '请输入密码',
+        icon: 'none'
+      });
+      return;
+    }
+
+    this.setData({ loading: true });
+    wx.showLoading({
+      title: '登录中...'
+    });
+
+    // 调用登录API
+    api.auth.login({
+      studentId: studentId.trim(),
+      password: password,
+      identity: identity
+    })
+    .then(res => {
+      wx.hideLoading();
+      this.setData({ loading: false });
+      
+      if (res.success) {
+        wx.showToast({
+          title: '登录成功',
+          icon: 'success'
+        });
+        
+        // 跳转到tabBar页面（校友列表）
+        setTimeout(() => {
+          wx.switchTab({
+            url: '/pages/alumniList/alumniList'
+          });
+        }, 1000);
+      } else {
+        wx.showToast({
+          title: res.message || '登录失败',
+          icon: 'none'
+        });
+      }
+    })
+    .catch(err => {
+      wx.hideLoading();
+      this.setData({ loading: false });
+      
+      console.error('登录错误:', err);
+      wx.showToast({
+        title: err.message || '网络错误，请重试',
+        icon: 'none'
+      });
+    });
   },
 
   // 注册按钮点击事件处理
-  // 目前未开放注册，点击时弹出提示
   goToRegister() {
     wx.redirectTo({
       url: `/pages/register/register?identity=${this.data.identity}`
