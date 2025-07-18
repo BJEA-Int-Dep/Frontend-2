@@ -1,0 +1,211 @@
+{
+  "users": [
+    {
+      "id": 1,
+      "name": "张三",
+      "studentId": "2020123456",
+      "major": "计算机科学",
+      "contact": "zhangsan@example.com",
+      "email": "zhangsan@example.com",
+      "phone": "13800138000",
+      "avatar": "https://example.com/avatar1.jpg",
+      "identity": "student",
+      "enrollmentYear": "2020",
+      "createdAt": "2024-01-01T00:00:00Z",
+      "updatedAt": "2024-01-01T00:00:00Z"
+    },
+    {
+      "id": 2,
+      "name": "李四",
+      "studentId": "2020123457",
+      "major": "软件工程",
+      "contact": "lisi@example.com",
+      "email": "lisi@example.com",
+      "phone": "13800138001",
+      "avatar": "https://example.com/avatar2.jpg",
+      "identity": "student",
+      "enrollmentYear": "2020",
+      "createdAt": "2024-01-01T00:00:00Z",
+      "updatedAt": "2024-01-01T00:00:00Z"
+    },
+    {
+      "id": 3,
+      "name": "王五",
+      "graduationYear": "2018",
+      "major": "金融学",
+      "company": "某银行",
+      "contact": "wangwu@example.com",
+      "email": "wangwu@example.com",
+      "phone": "13800138002",
+      "avatar": "https://example.com/avatar3.jpg",
+      "identity": "alumni",
+      "createdAt": "2024-01-01T00:00:00Z",
+      "updatedAt": "2024-01-01T00:00:00Z"
+    }
+  ],
+  "alumni": [
+    {
+      "id": 1,
+      "name": "张三",
+      "avatar": "https://example.com/avatar1.jpg",
+      "year": "2008级",
+      "major": "计算机科学",
+      "job": "现任某科技公司工程师",
+      "desc": "2008级计算机科学，现任某科技公司工程师。",
+      "contact": "zhangsan@example.com",
+      "company": "某科技公司",
+      "location": "北京",
+      "email": "zhangsan@example.com",
+      "phone": "13800138000",
+      "graduationYear": "2012",
+      "education": "本科",
+      "skills": ["Java", "Python", "JavaScript"],
+      "achievements": ["获得优秀毕业生称号", "参与多个重要项目"],
+      "createdAt": "2024-01-01T00:00:00Z",
+      "updatedAt": "2024-01-01T00:00:00Z"
+    },
+    {
+      "id": 2,
+      "name": "李四",
+      "avatar": "https://example.com/avatar2.jpg",
+      "year": "2009级",
+      "major": "软件工程",
+      "job": "现任某互联网公司产品经理",
+      "desc": "2009级软件工程，现任某互联网公司产品经理。",
+      "contact": "lisi@example.com",
+      "company": "某互联网公司",
+      "location": "上海",
+      "email": "lisi@example.com",
+      "phone": "13800138001",
+      "graduationYear": "2013",
+      "education": "本科",
+      "skills": ["产品设计", "项目管理", "数据分析"],
+      "achievements": ["获得优秀毕业生称号", "参与多个重要项目"],
+      "createdAt": "2024-01-01T00:00:00Z",
+      "updatedAt": "2024-01-01T00:00:00Z"
+    },
+    {
+      "id": 3,
+      "name": "王五",
+      "avatar": "https://example.com/avatar3.jpg",
+      "year": "2010级",
+      "major": "金融学",
+      "job": "现任某银行客户经理",
+      "desc": "2010级金融学，现任某银行客户经理。",
+      "contact": "wangwu@example.com",
+      "company": "某银行",
+      "location": "广州",
+      "email": "wangwu@example.com",
+      "phone": "13800138002",
+      "graduationYear": "2014",
+      "education": "本科",
+      "skills": ["金融分析", "客户服务", "风险管理"],
+      "achievements": ["获得优秀毕业生称号", "参与多个重要项目"],
+      "createdAt": "2024-01-01T00:00:00Z",
+      "updatedAt": "2024-01-01T00:00:00Z"
+    },
+    {
+      "id": 4,
+      "name": "赵六",
+      "avatar": "https://example.com/avatar4.jpg",
+      "year": "2011级",
+      "major": "市场营销",
+      "job": "现任某广告公司创意总监",
+      "desc": "2011级市场营销，现任某广告公司创意总监。",
+      "contact": "zhaoliu@example.com",
+      "company": "某广告公司",
+      "location": "深圳",
+      "email": "zhaoliu@example.com",
+      "phone": "13800138003",
+      "graduationYear": "2015",
+      "education": "本科",
+      "skills": ["创意设计", "品牌策划", "市场分析"],
+      "achievements": ["获得优秀毕业生称号", "参与多个重要项目"],
+      "createdAt": "2024-01-01T00:00:00Z",
+      "updatedAt": "2024-01-01T00:00:00Z"
+    },
+    {
+      "id": 5,
+      "name": "孙七",
+      "avatar": "https://example.com/avatar5.jpg",
+      "year": "2012级",
+      "major": "会计学",
+      "job": "现任某会计师事务所审计师",
+      "desc": "2012级会计学，现任某会计师事务所审计师。",
+      "contact": "sunqi@example.com",
+      "company": "某会计师事务所",
+      "location": "杭州",
+      "email": "sunqi@example.com",
+      "phone": "13800138004",
+      "graduationYear": "2016",
+      "education": "本科",
+      "skills": ["财务分析", "审计", "税务筹划"],
+      "achievements": ["获得优秀毕业生称号", "参与多个重要项目"],
+      "createdAt": "2024-01-01T00:00:00Z",
+      "updatedAt": "2024-01-01T00:00:00Z"
+    }
+  ],
+  "stats": {
+    "totalAlumni": 1000,
+    "totalStudents": 500,
+    "recentGraduates": 50,
+    "majorStats": [
+      {
+        "major": "计算机科学",
+        "count": 200
+      },
+      {
+        "major": "软件工程",
+        "count": 180
+      },
+      {
+        "major": "金融学",
+        "count": 150
+      },
+      {
+        "major": "市场营销",
+        "count": 120
+      },
+      {
+        "major": "会计学",
+        "count": 100
+      }
+    ],
+    "locationStats": [
+      {
+        "location": "北京",
+        "count": 300
+      },
+      {
+        "location": "上海",
+        "count": 250
+      },
+      {
+        "location": "广州",
+        "count": 200
+      },
+      {
+        "location": "深圳",
+        "count": 150
+      },
+      {
+        "location": "杭州",
+        "count": 100
+      }
+    ]
+  },
+  "testAccounts": [
+    {
+      "username": "testuser",
+      "password": "password123",
+      "email": "test@example.com",
+      "identity": "student"
+    },
+    {
+      "username": "testalumni",
+      "password": "password123",
+      "email": "alumni@example.com",
+      "identity": "alumni"
+    }
+  ]
+} 
