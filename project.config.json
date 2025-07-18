@@ -1,7 +1,7 @@
 {
   "appid": "wx7b64a19be9f2126a",
   "compileType": "miniprogram",
-  "libVersion": "trial",
+  "libVersion": "3.8.7",
   "packOptions": {
     "ignore": [],
     "include": []

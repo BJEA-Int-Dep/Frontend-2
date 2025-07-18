@@ -1,4 +1,4 @@
-<!--login.wxml-->
+<!-- login.wxml -->
 <view class="custom-header">
   <view class="header-left"></view>
   <view class="header-center">
@@ -6,28 +6,63 @@
   </view>
   <view class="header-right"></view>
 </view>
+
 <view class="container">
   <view class="identity-tabs">
-    <view class="tab {{identity === 'student' ? 'active' : ''}}" data-type="student" bindtap="chooseIdentity">我是学生</view>
-    <view class="tab {{identity === 'alumni' ? 'active' : ''}}" data-type="alumni" bindtap="chooseIdentity">我是校友</view>
+    <view
+      class="tab {{identity === 'student' ? 'active' : ''}}"
+      data-type="student"
+      bindtap="chooseIdentity"
+    >
+      我是学生
+    </view>
+    <view
+      class="tab {{identity === 'alumni' ? 'active' : ''}}"
+      data-type="alumni"
+      bindtap="chooseIdentity"
+    >
+      我是校友
+    </view>
   </view>
+
   <view class="login-form">
     <view class="input-group">
       <text class="label">学号</text>
-      <input class="input" type="text" placeholder="请输入学号" bindinput="onStudentIdInput" value="{{studentId}}"/>
-    </view>
-    
-    <view class="input-group">
-      <text class="label">密码</text>
-      <input class="input" type="password" placeholder="请输入密码" bindinput="onPasswordInput" value="{{password}}"/>
+      <input
+        class="input"
+        type="text"
+        placeholder="请输入学号"
+        bindinput="onStudentIdInput"
+        value="{{studentId}}"
+      />
     </view>
 
-    <button class="login-btn" bindtap="handleLogin">登录</button>
+    <view class="input-group">
+      <text class="label">密码</text>
+      <input
+        class="input"
+        type="password"
+        placeholder="请输入密码"
+        bindinput="onPasswordInput"
+        value="{{password}}"
+      />
+    </view>
+
+    <!-- 通过 isLoginActive 控制样式 -->
+    <button
+      class="login-btn {{isLoginActive ? 'active' : ''}}"
+      bindtap="handleLogin"
+      bindtouchstart="onLoginTouchStart"
+      bindtouchend="onLoginTouchEnd"
+    >
+      登录
+    </button>
   </view>
 </view>
+
 <view class="register-link">
   <view class="register-text">
-    <text class="register-prompt">还没有账号？</text>
-    <text class="link" bindtap="goToRegister">立即注册</text>
+    <view class="register-prompt">还没有账号？</view>
+    <view class="link" bindtap="goToRegister">立即注册</view>
   </view>
-</view> 
+</view>
