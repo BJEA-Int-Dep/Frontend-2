@@ -14,6 +14,10 @@ Page({
     // 校友注册字段
     graduationYear: '',
     company: '',
+    // 同届学生姓名字段
+    classmate1: '',
+    classmate2: '',
+    classmate3: '',
     // 通用字段
     loading: false
   },
@@ -65,6 +69,19 @@ Page({
 
   onConfirmPasswordInput(e) {
     this.setData({ confirmPassword: e.detail.value });
+  },
+
+  // 同届学生姓名输入处理
+  onClassmate1Input(e) {
+    this.setData({ classmate1: e.detail.value });
+  },
+
+  onClassmate2Input(e) {
+    this.setData({ classmate2: e.detail.value });
+  },
+
+  onClassmate3Input(e) {
+    this.setData({ classmate3: e.detail.value });
   },
 
   // 表单验证
@@ -142,6 +159,16 @@ Page({
         });
         return false;
       }
+
+      // 验证同届学生姓名（至少填写一个）
+      const { classmate1, classmate2, classmate3 } = this.data;
+      if (!classmate1.trim() && !classmate2.trim() && !classmate3.trim()) {
+        wx.showToast({
+          title: '请至少填写一个同届学生姓名',
+          icon: 'none'
+        });
+        return false;
+      }
     }
 
     return true;
@@ -150,7 +177,7 @@ Page({
   handleRegister() {
     if (!this.validateForm()) return;
 
-    const { identity, studentId, name, major, enrollmentYear, graduationYear, company, contact, password } = this.data;
+    const { identity, studentId, name, major, enrollmentYear, graduationYear, company, contact, password, classmate1, classmate2, classmate3 } = this.data;
 
     this.setData({ loading: true });
     wx.showLoading({
@@ -175,6 +202,12 @@ Page({
       if (company.trim()) {
         registerData.company = company.trim();
       }
+      // 添加同届学生姓名
+      const classmates = [];
+      if (classmate1.trim()) classmates.push(classmate1.trim());
+      if (classmate2.trim()) classmates.push(classmate2.trim());
+      if (classmate3.trim()) classmates.push(classmate3.trim());
+      registerData.classmates = classmates;
     }
 
     // 调用注册API

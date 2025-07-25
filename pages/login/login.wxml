@@ -37,11 +37,11 @@
       <view class="input-group">
         <view class="input-icon">ID</view>
         <view class="input-content">
-          <text class="label">学号/工号</text>
+          <text class="label">{{identity === 'student' ? '学号' : '校友姓名'}}</text>
           <input
             class="input"
             type="text"
-            placeholder="请输入学号或工号"
+            placeholder="{{identity === 'student' ? '请输入学号' : '请输入校友姓名'}}"
             bindinput="onStudentIdInput"
             value="{{studentId}}"
           />

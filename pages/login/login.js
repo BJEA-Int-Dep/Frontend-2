@@ -67,7 +67,7 @@ Page({
     // 输入验证
     if (!studentId.trim()) {
       wx.showToast({
-        title: '请输入学号/工号',
+        title: identity === 'student' ? '请输入学号' : '请输入校友姓名',
         icon: 'none'
       });
       return;

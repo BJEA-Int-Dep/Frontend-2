@@ -136,6 +136,31 @@
         </view>
       </view>
       
+      <!-- 同届学生姓名输入 -->
+      <view class="input-group">
+        <view class="input-icon">同</view>
+        <view class="input-content">
+          <text class="label">同届学生姓名1</text>
+          <input class="input" type="text" placeholder="请输入同届学生姓名" value="{{classmate1}}" bindinput="onClassmate1Input" />
+        </view>
+      </view>
+      
+      <view class="input-group">
+        <view class="input-icon">同</view>
+        <view class="input-content">
+          <text class="label">同届学生姓名2</text>
+          <input class="input" type="text" placeholder="请输入同届学生姓名" value="{{classmate2}}" bindinput="onClassmate2Input" />
+        </view>
+      </view>
+      
+      <view class="input-group">
+        <view class="input-icon">同</view>
+        <view class="input-content">
+          <text class="label">同届学生姓名3</text>
+          <input class="input" type="text" placeholder="请输入同届学生姓名" value="{{classmate3}}" bindinput="onClassmate3Input" />
+        </view>
+      </view>
+      
       <view class="input-group">
         <view class="input-icon">锁</view>
         <view class="input-content">
