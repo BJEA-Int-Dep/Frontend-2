@@ -1,10 +1,136 @@
 /**app.wxss**/
+
+/* 全局兼容性优化 */
+page {
+  /* 防止页面滚动时的橡皮筋效果 */
+  -webkit-overflow-scrolling: touch;
+  /* 禁用文本选择 */
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  /* 禁用点击高亮 */
+  -webkit-tap-highlight-color: transparent;
+  /* 字体渲染优化 */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  /* 防止文字溢出 */
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  /* 盒模型统一 */
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+/* 全局文字溢出处理 */
+text, view, button, input, textarea {
+  /* 防止文字溢出 */
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  /* 字体渲染优化 */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  /* 禁用文本选择 */
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+/* 输入框特殊处理 */
+input, textarea {
+  /* 允许输入框文本选择 */
+  -webkit-user-select: text;
+  -moz-user-select: text;
+  -ms-user-select: text;
+  user-select: text;
+  /* 防止输入框文字溢出 */
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  /* 输入框字体渲染 */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
 .container {
   height: 100%;
+  display: -webkit-flex;
+  display: -moz-flex;
   display: flex;
+  -webkit-flex-direction: column;
+  -moz-flex-direction: column;
   flex-direction: column;
+  -webkit-align-items: center;
+  -moz-align-items: center;
   align-items: center;
+  -webkit-justify-content: space-between;
+  -moz-justify-content: space-between;
   justify-content: space-between;
   padding: 200rpx 0;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
   box-sizing: border-box;
+  /* 防止文字溢出 */
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  /* 设备适配 */
+  -webkit-overflow-scrolling: touch;
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* 长文本处理 */
+.long-text {
+  /* 多行文本省略 */
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  /* 兼容性处理 */
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+}
+
+/* 单行文本省略 */
+.single-line-text {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  /* 兼容性处理 */
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+}
+
+/* 按钮兼容性优化 */
+button {
+  /* 移除默认样式 */
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  /* 防止文字溢出 */
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  /* 字体渲染优化 */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  /* 禁用点击高亮 */
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* 图片兼容性优化 */
+image {
+  /* 防止图片溢出 */
+  max-width: 100%;
+  height: auto;
+  /* 图片渲染优化 */
+  -webkit-backface-visibility: hidden;
+  -moz-backface-visibility: hidden;
+  backface-visibility: hidden;
+  /* 防止图片闪烁 */
+  -webkit-transform: translateZ(0);
+  -moz-transform: translateZ(0);
+  -ms-transform: translateZ(0);
+  -o-transform: translateZ(0);
+  transform: translateZ(0);
 } 

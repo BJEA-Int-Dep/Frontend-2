@@ -138,5 +138,14 @@ Page({
     this.setData({
       identity: e.currentTarget.dataset.type
     });
+  },
+
+  // 登录按钮触摸事件处理
+  onLoginTouchStart() {
+    this.setData({ isLoginActive: true });
+  },
+
+  onLoginTouchEnd() {
+    this.setData({ isLoginActive: false });
   }
 })

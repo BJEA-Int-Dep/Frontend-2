@@ -1,14 +1,4 @@
-.container {
-  min-height: calc(100vh - 180rpx);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  padding: 0 0 40rpx 0;
-  background-color: #F6F6F6;
-  position: relative;
-}
-
+/* 保持原有页眉样式不变 */
 .custom-header {
   width: 100vw;
   min-width: 100vw;
@@ -21,7 +11,6 @@
   padding-bottom: 36rpx;
   background: #fff;
   box-sizing: border-box;
-  /* position: sticky; 改为固定或删除 */
   position: fixed;
   top: 0;
   z-index: 10;
@@ -49,48 +38,298 @@
   line-height: 1.2;
 }
 
-.logo {
-  width: 180rpx;
-  height: 180rpx;
+/* 主容器 */
+.container {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  /* 渐变背景兼容性增强 */
+  background: #667eea; /* 降级背景色 */
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  position: relative;
+  padding: 300rpx 0 0 0;
+  box-sizing: border-box;
+  overflow-x: hidden;
+  /* 设备适配 */
+  -webkit-overflow-scrolling: touch;
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* 欢迎区域 */
+.welcome-section {
+  text-align: center;
+  margin-bottom: 60rpx;
+  padding: 0 40rpx;
+  position: relative;
+}
+
+@keyframes bounce {
+  0%, 20%, 50%, 80%, 100% {
+    transform: translateY(0);
+  }
+  40% {
+    transform: translateY(-10rpx);
+  }
+  60% {
+    transform: translateY(-5rpx);
+  }
+}
+
+.welcome-text {
+  font-size: 52rpx;
+  font-weight: 800;
+  color: #fff;
   margin-bottom: 20rpx;
+  /* 文字阴影兼容性增强 */
+  text-shadow: 0 4rpx 8rpx rgba(0,0,0,0.3);
+  letter-spacing: 2rpx;
+  /* 防止文字溢出 */
+  word-wrap: break-word;
+  overflow-wrap: break-word;
 }
 
-.title {
-  font-size: 36rpx;
-  font-weight: bold;
-  color: #333;
+.welcome-subtitle {
+  font-size: 30rpx;
+  color: rgba(255,255,255,0.95);
+  /* 文字阴影兼容性增强 */
+  text-shadow: 0 2rpx 4rpx rgba(0,0,0,0.2);
+  font-weight: 400;
+  letter-spacing: 1rpx;
+  /* 防止文字溢出 */
+  word-wrap: break-word;
+  overflow-wrap: break-word;
 }
 
-.login-form {
-  width: 80%;
+/* 身份选择标签 */
+.identity-tabs {
+  width: 85%;
+  max-width: 580rpx;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  margin: 0 auto 80rpx auto;
+  background: rgba(255,255,255,0.12);
+  border-radius: 60rpx;
+  overflow: hidden;
+  /* backdrop-filter兼容性增强 */
+  backdrop-filter: blur(15rpx);
+  box-shadow: 0 12rpx 40rpx rgba(0,0,0,0.15);
+  border: 1rpx solid rgba(255,255,255,0.25);
+  position: relative;
+  /* 设备适配 */
+  -webkit-tap-highlight-color: transparent;
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+.identity-tabs::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  /* 渐变背景兼容性增强 */
+  background: rgba(255,255,255,0.1); /* 降级背景 */
+  background: -webkit-linear-gradient(135deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.05) 100%);
+  background: -moz-linear-gradient(135deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.05) 100%);
+  background: -o-linear-gradient(135deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.05) 100%);
+  background: linear-gradient(135deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.05) 100%);
+  border-radius: 60rpx;
+  -webkit-border-radius: 60rpx;
+  -moz-border-radius: 60rpx;
+  pointer-events: none;
+}
+
+.tab {
+  flex: 1;
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
+  padding: 36rpx 24rpx;
+  font-size: 28rpx;
+  color: rgba(255,255,255,0.7);
+  background: transparent;
+  /* 过渡动画兼容性增强 */
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  z-index: 1;
+  /* 设备适配 */
+  -webkit-tap-highlight-color: transparent;
 }
 
+.tab.active {
+  color: #fff;
+  background: rgba(255,255,255,0.25);
+  font-weight: 600;
+  /* 变换兼容性增强 */
+  transform: scale(1.02);
+  box-shadow: 0 4rpx 20rpx rgba(0,0,0,0.1);
+}
+
+.tab-icon {
+  font-size: 36rpx;
+  margin-bottom: 10rpx;
+  /* 过渡动画兼容性增强 */
+  -webkit-transition: transform 0.3s ease;
+  -moz-transition: transform 0.3s ease;
+  -o-transition: transform 0.3s ease;
+  transition: transform 0.3s ease;
+  font-weight: bold;
+  color: rgba(255,255,255,0.9);
+  /* 字体渲染优化 */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.tab.active .tab-icon {
+  -webkit-transform: scale(1.1);
+  -moz-transform: scale(1.1);
+  -ms-transform: scale(1.1);
+  -o-transform: scale(1.1);
+  transform: scale(1.1);
+  color: #fff;
+}
+
+.tab-text {
+  font-size: 26rpx;
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+
+/* 登录表单 */
+.login-form {
+  width: 88%;
+  max-width: 680rpx;
+  margin: 0 auto;
+}
+
+.form-content {
+  background: rgba(255,255,255,0.98);
+  border-radius: 36rpx;
+  padding: 56rpx 48rpx;
+  box-shadow: 0 24rpx 80rpx rgba(0,0,0,0.12);
+  /* backdrop-filter兼容性增强 */
+  backdrop-filter: blur(25rpx);
+  border: 1rpx solid rgba(255,255,255,0.4);
+  /* 动画兼容性增强 */
+  animation: slideUp 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+  /* 防止文字溢出 */
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+}
+
+.form-content::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4rpx;
+  /* 渐变背景兼容性增强 */
+  background: #667eea; /* 降级背景色 */
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  border-radius: 36rpx 36rpx 0 0;
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(40rpx);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* 兼容性动画前缀 - 微信小程序优化版本 */
+
+.form-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 48rpx;
+  padding-bottom: 24rpx;
+  border-bottom: 2rpx solid #f0f0f0;
+}
+
+.form-title-icon {
+  font-size: 48rpx;
+  margin-right: 24rpx;
+  filter: drop-shadow(0 2rpx 4rpx rgba(0,0,0,0.1));
+  color: #667eea;
+  font-weight: bold;
+}
+
+.form-title {
+  font-size: 36rpx;
+  font-weight: bold;
+  color: #333;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* 输入组 */
 .input-group {
-  width: 100%;
-  background-color: #FFFFFF;
+  display: flex;
+  align-items: center;
+  background: #f8f9fa;
   border-radius: 20rpx;
-  padding: 20rpx 36rpx 8rpx 36rpx;
+  padding: 24rpx 28rpx;
   margin-bottom: 32rpx;
-  box-shadow: 0 4rpx 24rpx rgba(0,0,0,0.06);
+  border: 2rpx solid transparent;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.input-group:focus-within {
+  border-color: #667eea;
+  background: #fff;
+  box-shadow: 0 4rpx 20rpx rgba(102,126,234,0.15);
+  transform: translateY(-2rpx);
+}
+
+.input-icon {
+  font-size: 24rpx;
+  margin-right: 20rpx;
+  color: #667eea;
+  flex-shrink: 0;
+  font-weight: bold;
+  background: rgba(102,126,234,0.1);
+  padding: 10rpx 14rpx;
+  border-radius: 12rpx;
+  min-width: 44rpx;
+  text-align: center;
+  line-height: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.input-content {
+  flex: 1;
   display: flex;
   flex-direction: column;
 }
 
 .label {
-  font-size: 28rpx;
+  font-size: 24rpx;
   color: #666;
   margin-bottom: 8rpx;
-  display: block;
+  font-weight: 500;
 }
 
 .input {
   width: 100%;
-  height: 64rpx;
-  line-height: 64rpx;
-  font-size: 34rpx;
+  height: 48rpx;
+  line-height: 48rpx;
+  font-size: 32rpx;
   color: #333;
   border: none;
   background: transparent;
@@ -98,87 +337,120 @@
   box-sizing: border-box;
 }
 
+.input::placeholder {
+  color: #999;
+}
+
+/* 登录按钮 */
 .login-btn {
   width: 100%;
-  margin-top: 60rpx;
   height: 100rpx;
   display: flex;
   align-items: center;
   justify-content: center;
-  background: #1AAD19;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
   color: #FFFFFF;
   font-size: 36rpx;
   font-weight: bold;
   border-radius: 50rpx;
-  box-shadow: 0 8rpx 24rpx rgba(34,197,94,0.15);
+  margin-top: 48rpx;
+  box-shadow: 0 12rpx 32rpx rgba(102,126,234,0.3);
+  transition: all 0.3s ease;
   border: none;
+  position: relative;
+  overflow: hidden;
 }
 
-/* 替代 :active 写法 */
-.login-btn.active {
-  background: #179B16;
+.login-btn::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+  transition: left 0.5s;
 }
 
+.login-btn:active::before {
+  left: 100%;
+}
+
+.login-btn:active {
+  transform: translateY(2rpx);
+  box-shadow: 0 8rpx 24rpx rgba(102,126,234,0.4);
+}
+
+.login-btn.loading {
+  background: linear-gradient(135deg, #9ca3af 0%, #6b7280 100%);
+  pointer-events: none;
+}
+
+.loading-icon {
+  width: 32rpx;
+  height: 32rpx;
+  border: 3rpx solid rgba(255,255,255,0.3);
+  border-top: 3rpx solid #fff;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin-right: 16rpx;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* 底部注册链接 */
 .register-link {
-  position: fixed;
-  left: 0;
-  bottom: 0;
-  width: 100vw;
+  position: relative;
+  width: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
-  background: transparent;
-  z-index: 100;
-  padding: calc(env(safe-area-inset-bottom) + 40rpx) 0;
+  padding: 20rpx 0 calc(env(safe-area-inset-bottom) + 12rpx) 0;
+  margin-top: 40rpx;
 }
 
 .register-text {
   display: flex;
   align-items: center;
   justify-content: center;
-}
-
-/* 替代 gap */
-.register-text > view {
-  margin-right: 20rpx;
-}
-.register-text > view:last-child {
-  margin-right: 0;
+  gap: 12rpx;
+  padding: 16rpx 32rpx;
 }
 
 .register-prompt {
-  font-size: 28rpx;
-  color: #666;
+  font-size: 26rpx;
+  color: rgba(255,255,255,0.9);
+  font-weight: 400;
 }
 
 .link {
-  color: #1AAD19;
-  font-size: 28rpx;
-  font-weight: bold;
+  color: #fff;
+  font-size: 26rpx;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  position: relative;
 }
 
-.identity-tabs {
-  width: 80%;
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  margin: 0 auto 40rpx auto;
-  background: #f2f2f2;
-  border-radius: 44rpx;
-  overflow: hidden;
+.link::after {
+  content: '';
+  position: absolute;
+  bottom: -2rpx;
+  left: 0;
+  width: 0;
+  height: 2rpx;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  transition: width 0.3s ease;
 }
 
-.tab {
-  flex: 1;
-  text-align: center;
-  padding: 24rpx 0;
-  font-size: 32rpx;
-  color: #888;
-  background: #f2f2f2;
+.link:active {
+  color: rgba(255,255,255,0.8);
+  transform: scale(0.95);
 }
 
-.tab.active {
-  color: #1AAD19;
-  background: #fff;
-  font-weight: bold;
+.link:active::after {
+  width: 100%;
 }

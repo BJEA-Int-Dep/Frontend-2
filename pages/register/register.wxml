@@ -5,34 +5,166 @@
   </view>
   <view class="header-right"></view>
 </view>
+
 <view class="container">
+  <!-- 欢迎区域 -->
+  <view class="welcome-section">
+    <view class="welcome-text">欢迎加入校友社区</view>
+    <view class="welcome-subtitle">请选择您的身份并完成注册</view>
+  </view>
+
+  <!-- 身份选择标签 -->
   <view class="identity-tabs">
-    <view class="tab {{identity === 'student' ? 'active' : ''}}" data-type="student" bindtap="chooseIdentity">我是学生</view>
-    <view class="tab {{identity === 'alumni' ? 'active' : ''}}" data-type="alumni" bindtap="chooseIdentity">我是校友</view>
+    <view class="tab {{identity === 'student' ? 'active' : ''}}" data-type="student" bindtap="chooseIdentity">
+      <view class="tab-icon">学</view>
+      <view class="tab-text">我是学生</view>
+    </view>
+    <view class="tab {{identity === 'alumni' ? 'active' : ''}}" data-type="alumni" bindtap="chooseIdentity">
+      <view class="tab-icon">友</view>
+      <view class="tab-text">我是校友</view>
+    </view>
   </view>
+
+  <!-- 注册表单 -->
   <view class="register-form">
-    <view wx:if="{{identity === 'student'}}">
-      <view class="form-title">学生注册</view>
-      <view class="input-group"><text class="label">学号</text><input class="input" type="text" placeholder="请输入学号" /></view>
-      <view class="input-group"><text class="label">姓名</text><input class="input" type="text" placeholder="请输入姓名" /></view>
-      <view class="input-group"><text class="label">专业</text><input class="input" type="text" placeholder="请输入专业" /></view>
-      <view class="input-group"><text class="label">入学年份</text><input class="input" type="text" placeholder="请输入入学年份" /></view>
-      <view class="input-group"><text class="label">联系方式</text><input class="input" type="text" placeholder="请输入联系方式" /></view>
+    <view wx:if="{{identity === 'student'}}" class="form-content">
+      <view class="form-header">
+        <view class="form-title-icon">●</view>
+        <view class="form-title">学生注册</view>
+      </view>
+      
+      <view class="input-group">
+        <view class="input-icon">ID</view>
+        <view class="input-content">
+          <text class="label">学号</text>
+          <input class="input" type="text" placeholder="请输入学号" value="{{studentId}}" bindinput="onStudentIdInput" />
+        </view>
+      </view>
+      
+      <view class="input-group">
+        <view class="input-icon">名</view>
+        <view class="input-content">
+          <text class="label">姓名</text>
+          <input class="input" type="text" placeholder="请输入姓名" value="{{name}}" bindinput="onNameInput" />
+        </view>
+      </view>
+      
+      <view class="input-group">
+        <view class="input-icon">专</view>
+        <view class="input-content">
+          <text class="label">专业</text>
+          <input class="input" type="text" placeholder="请输入专业" value="{{major}}" bindinput="onMajorInput" />
+        </view>
+      </view>
+      
+      <view class="input-group">
+        <view class="input-icon">年</view>
+        <view class="input-content">
+          <text class="label">入学年份</text>
+          <input class="input" type="text" placeholder="请输入入学年份" value="{{enrollmentYear}}" bindinput="onEnrollmentYearInput" />
+        </view>
+      </view>
+      
+      <view class="input-group">
+        <view class="input-icon">电</view>
+        <view class="input-content">
+          <text class="label">联系方式</text>
+          <input class="input" type="text" placeholder="请输入联系方式" value="{{contact}}" bindinput="onContactInput" />
+        </view>
+      </view>
+      
+      <view class="input-group">
+        <view class="input-icon">锁</view>
+        <view class="input-content">
+          <text class="label">密码</text>
+          <input class="input" type="password" placeholder="请输入密码" value="{{password}}" bindinput="onPasswordInput" />
+        </view>
+      </view>
+      
+      <view class="input-group">
+        <view class="input-icon">钥</view>
+        <view class="input-content">
+          <text class="label">确认密码</text>
+          <input class="input" type="password" placeholder="请再次输入密码" value="{{confirmPassword}}" bindinput="onConfirmPasswordInput" />
+        </view>
+      </view>
     </view>
-    <view wx:if="{{identity === 'alumni'}}">
-      <view class="form-title">校友注册</view>
-      <view class="input-group"><text class="label">姓名</text><input class="input" type="text" placeholder="请输入姓名" /></view>
-      <view class="input-group"><text class="label">毕业年份</text><input class="input" type="text" placeholder="请输入毕业年份" /></view>
-      <view class="input-group"><text class="label">专业</text><input class="input" type="text" placeholder="请输入专业" /></view>
-      <view class="input-group"><text class="label">工作单位</text><input class="input" type="text" placeholder="请输入工作单位" /></view>
-      <view class="input-group"><text class="label">联系方式</text><input class="input" type="text" placeholder="请输入联系方式" /></view>
+
+    <view wx:if="{{identity === 'alumni'}}" class="form-content">
+      <view class="form-header">
+        <view class="form-title-icon">●</view>
+        <view class="form-title">校友注册</view>
+      </view>
+      
+      <view class="input-group">
+        <view class="input-icon">名</view>
+        <view class="input-content">
+          <text class="label">姓名</text>
+          <input class="input" type="text" placeholder="请输入姓名" value="{{name}}" bindinput="onNameInput" />
+        </view>
+      </view>
+      
+      <view class="input-group">
+        <view class="input-icon">年</view>
+        <view class="input-content">
+          <text class="label">毕业年份</text>
+          <input class="input" type="text" placeholder="请输入毕业年份" value="{{graduationYear}}" bindinput="onGraduationYearInput" />
+        </view>
+      </view>
+      
+      <view class="input-group">
+        <view class="input-icon">专</view>
+        <view class="input-content">
+          <text class="label">专业</text>
+          <input class="input" type="text" placeholder="请输入专业" value="{{major}}" bindinput="onMajorInput" />
+        </view>
+      </view>
+      
+      <view class="input-group">
+        <view class="input-icon">司</view>
+        <view class="input-content">
+          <text class="label">工作单位</text>
+          <input class="input" type="text" placeholder="请输入工作单位（选填）" value="{{company}}" bindinput="onCompanyInput" />
+        </view>
+      </view>
+      
+      <view class="input-group">
+        <view class="input-icon">电</view>
+        <view class="input-content">
+          <text class="label">联系方式</text>
+          <input class="input" type="text" placeholder="请输入联系方式" value="{{contact}}" bindinput="onContactInput" />
+        </view>
+      </view>
+      
+      <view class="input-group">
+        <view class="input-icon">锁</view>
+        <view class="input-content">
+          <text class="label">密码</text>
+          <input class="input" type="password" placeholder="请输入密码" value="{{password}}" bindinput="onPasswordInput" />
+        </view>
+      </view>
+      
+      <view class="input-group">
+        <view class="input-icon">钥</view>
+        <view class="input-content">
+          <text class="label">确认密码</text>
+          <input class="input" type="password" placeholder="请再次输入密码" value="{{confirmPassword}}" bindinput="onConfirmPasswordInput" />
+        </view>
+      </view>
     </view>
-    <button class="register-btn" bindtap="handleRegister">注册</button>
+
+    <!-- 注册按钮 -->
+    <button class="register-btn {{loading ? 'loading' : ''}}" bindtap="handleRegister" disabled="{{loading}}">
+      <view wx:if="{{loading}}" class="loading-icon"></view>
+      <text>{{loading ? '注册中...' : '立即注册'}}</text>
+    </button>
   </view>
-</view>
-<view class="register-bottom">
-  <view class="register-text">
-    <text class="register-prompt">已有账号？</text>
-    <text class="link" bindtap="goToLogin">返回登录</text>
+
+  <!-- 底部登录链接 -->
+  <view class="register-bottom">
+    <view class="register-text">
+      <text class="register-prompt">已有账号？</text>
+      <text class="link" bindtap="goToLogin">立即登录</text>
+    </view>
   </view>
 </view> 

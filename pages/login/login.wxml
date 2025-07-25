@@ -2,67 +2,85 @@
 <view class="custom-header">
   <view class="header-left"></view>
   <view class="header-center">
-    <text class="header-title">校友资料查询系统</text>
+    <text class="header-title">登录</text>
   </view>
   <view class="header-right"></view>
 </view>
 
 <view class="container">
+  <!-- 欢迎区域 -->
+  <view class="welcome-section">
+    <view class="welcome-text">欢迎回来</view>
+    <view class="welcome-subtitle">登录您的校友账户</view>
+  </view>
+
+  <!-- 身份选择标签 -->
   <view class="identity-tabs">
-    <view
-      class="tab {{identity === 'student' ? 'active' : ''}}"
-      data-type="student"
-      bindtap="chooseIdentity"
-    >
-      我是学生
+    <view class="tab {{identity === 'student' ? 'active' : ''}}" data-type="student" bindtap="chooseIdentity">
+      <view class="tab-icon">学</view>
+      <view class="tab-text">我是学生</view>
     </view>
-    <view
-      class="tab {{identity === 'alumni' ? 'active' : ''}}"
-      data-type="alumni"
-      bindtap="chooseIdentity"
-    >
-      我是校友
+    <view class="tab {{identity === 'alumni' ? 'active' : ''}}" data-type="alumni" bindtap="chooseIdentity">
+      <view class="tab-icon">友</view>
+      <view class="tab-text">我是校友</view>
     </view>
   </view>
 
+  <!-- 登录表单 -->
   <view class="login-form">
-    <view class="input-group">
-      <text class="label">学号</text>
-      <input
-        class="input"
-        type="text"
-        placeholder="请输入学号"
-        bindinput="onStudentIdInput"
-        value="{{studentId}}"
-      />
-    </view>
+    <view class="form-content">
+      <view class="form-header">
+        <view class="form-title-icon">●</view>
+        <view class="form-title">用户登录</view>
+      </view>
+      
+      <view class="input-group">
+        <view class="input-icon">ID</view>
+        <view class="input-content">
+          <text class="label">学号/工号</text>
+          <input
+            class="input"
+            type="text"
+            placeholder="请输入学号或工号"
+            bindinput="onStudentIdInput"
+            value="{{studentId}}"
+          />
+        </view>
+      </view>
 
-    <view class="input-group">
-      <text class="label">密码</text>
-      <input
-        class="input"
-        type="password"
-        placeholder="请输入密码"
-        bindinput="onPasswordInput"
-        value="{{password}}"
-      />
-    </view>
+      <view class="input-group">
+        <view class="input-icon">锁</view>
+        <view class="input-content">
+          <text class="label">密码</text>
+          <input
+            class="input"
+            type="password"
+            placeholder="请输入密码"
+            bindinput="onPasswordInput"
+            value="{{password}}"
+          />
+        </view>
+      </view>
 
-    <!-- 通过 isLoginActive 控制样式 -->
-    <button
-      class="login-btn {{isLoginActive ? 'active' : ''}}"
-      bindtap="handleLogin"
-      bindtouchstart="onLoginTouchStart"
-      bindtouchend="onLoginTouchEnd"
-    >
-      登录
-    </button>
+      <!-- 登录按钮 -->
+      <button
+        class="login-btn {{loading ? 'loading' : ''}} {{isLoginActive ? 'active' : ''}}"
+        bindtap="handleLogin"
+        bindtouchstart="onLoginTouchStart"
+        bindtouchend="onLoginTouchEnd"
+        disabled="{{loading}}"
+      >
+        <view wx:if="{{loading}}" class="loading-icon"></view>
+        <text>{{loading ? '登录中...' : '立即登录'}}</text>
+      </button>
+    </view>
   </view>
-</view>
 
-<view class="register-link">
-  <view class="register-text">
-    <view class="register-prompt">还没有账号？</view>
-    <view class="link" bindtap="goToRegister">立即注册</view>
+  <!-- 底部注册链接 -->
+  <view class="register-link">
+    <view class="register-text">
+      <text class="register-prompt">还没有账号？</text>
+      <text class="link" bindtap="goToRegister">立即注册</text>
+    </view>
   </view>
 </view>
